@@ -13,7 +13,7 @@
 <style>
   /* ===================== TOKENS ===================== */
   :root{
-    --bg:#010e1e;
+    --bg:#0A2647;
     --bg-soft:#0D3057;
     --panel:#11365F;
     --panel-strong:#163F6E;
@@ -53,7 +53,6 @@
     z-index:0;
     pointer-events:none;
     background-image:
-      linear-gradient(var(--line-soft) 1px, transparent 1px),
       linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
     background-size:42px 42px;
     background-position:-1px -1px;
@@ -466,6 +465,31 @@
   }
   .node-card h3{font-size:1.25rem; margin-bottom:12px; line-height:1.3;}
   .node-card p{margin-bottom:0; font-size:0.95rem;}
+  .node-card p + p{margin-top:12px;}
+  .node-list{
+    list-style:none;
+    margin:16px 0 0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:11px;
+  }
+  .node-list li{
+    position:relative;
+    padding-left:20px;
+    font-size:0.92rem;
+    color:var(--text-dim);
+    line-height:1.55;
+  }
+  .node-list li::before{
+    content:"▸";
+    position:absolute;
+    left:0;
+    top:0.05em;
+    color:var(--copper);
+    font-size:0.85em;
+  }
+  .node-list strong{color:var(--text); font-weight:600;}
   .node-badge{
     display:inline-block;
     margin-top:14px;
@@ -696,7 +720,15 @@
             <div class="node-card">
               <p class="node-tag mono">ATIVIDADE 2.1 · INDIVIDUAL</p>
               <h3>Pensamento crítico em primeiro lugar</h3>
-              <p>Depois de assistir a palestras sobre inteligência artificial, refleti sobre como a IA pode ampliar nossas capacidades — ou nos deixar dependentes demais dela. A conclusão: pensamento crítico e estratégia continuam sendo diferenciais bem humanos, e o futuro profissional passa por saber usar a IA pra aprender, não pra terceirizar o raciocínio.</p>
+              <p>Antes de responder, assisti a duas palestras do TEDx — "Como a IA vai mudar tudo", de Miguel Fernandes, e "O Poder da IA Generativa", de Vinícius Caridá — e fiz anotações pra responder seis questões reflexivas sobre o papel da inteligência artificial.</p>
+              <ul class="node-list">
+                <li><strong>IA como ferramenta humana:</strong> os vídeos comparam a IA a um rio que precisamos aprender a navegar e a uma bicicleta que amplia nossas capacidades — no curto prazo ela ajuda, mas pode atrapalhar se a usarmos pra evitar pensar.</li>
+                <li><strong>Uso crítico:</strong> um dos vídeos mostrou a IA errando sobre quantas leis de Newton existem — sem pensamento crítico, esses erros passam batido em textos, redações e notícias.</li>
+                <li><strong>IA e aprendizado:</strong> um estudo citado mostrou que quem resolve problemas sem IA lembra melhor da solução depois — a IA ajuda mais quando explica, não quando só responde por você.</li>
+                <li><strong>Influência humana nas respostas:</strong> no exemplo de Dom Casmurro, perguntas tendenciosas levaram a IA a confirmar a interpretação que o estudante já queria ouvir.</li>
+                <li><strong>O que ainda é só humano:</strong> empatia, criatividade e estratégia continuam sendo domínio humano, segundo os palestrantes.</li>
+                <li><strong>IA e futuro profissional:</strong> a ideia que mais ficou foi que ninguém vai ser substituído pela IA, mas pode ser substituído por alguém que sabe usá-la melhor.</li>
+              </ul>
             </div>
           </article>
 
@@ -705,7 +737,14 @@
             <div class="node-card">
               <p class="node-tag mono">ATIVIDADE 2.2 · DUPLA COM THOMAS VITALINO</p>
               <h3>Explorando a IA Generativa: ChatGPT x Copilot</h3>
-              <p>Em dupla, testei o ChatGPT enquanto o Thomas testava o Copilot, comparando as respostas pros mesmos quatro prompts — de uma explicação simples até um poema sobre a Revolução Francesa. Conclusão da dupla: quanto mais detalhado o prompt, melhor — e mais interessante — fica a resposta das duas ferramentas.</p>
+              <p>Em dupla, testamos quatro prompts iguais sobre a Revolução Francesa — eu no ChatGPT, o Thomas no Copilot — sem ver a resposta um do outro antes de discutir.</p>
+              <ul class="node-list">
+                <li><strong>Teste 1 — explicação simples:</strong> o Copilot organizou a resposta em tópicos bem estruturados; o ChatGPT foi mais superficial, mas gerou imagens de apoio.</li>
+                <li><strong>Teste 2 — três pontos de vista:</strong> pedimos a visão de um camponês, um nobre e um revolucionário — o Copilot interpretou melhor cada personagem, enquanto o ChatGPT só descreveu a vida de cada um.</li>
+                <li><strong>Teste 3 — prompt criativo:</strong> simulando um jornalista em Paris em 1789, o Copilot criou um "jornal" mais imersivo; o ChatGPT pareceu tirar as informações de um livro antigo.</li>
+                <li><strong>Teste 4 — prompt simples x detalhado:</strong> pedir só "um poema sobre a Revolução Francesa" gerou textos genéricos; especificar a queda da Bastilha, a fome do povo e a esperança de liberdade melhorou bastante as duas respostas.</li>
+                <li><strong>Conclusão da dupla:</strong> o Copilot se aprofunda mais e explica melhor pra estudar; o ChatGPT é mais genérico — e prompts detalhados sempre valem a pena.</li>
+              </ul>
             </div>
           </article>
 
@@ -722,7 +761,17 @@
             <div class="node-card">
               <p class="node-tag mono">DESIGN THINKING · ESCUTA ATIVA · INDIVIDUAL</p>
               <h3>Design Thinking — escuta ativa</h3>
-              <p>Respondi 8 questões sobre as cinco etapas do Design Thinking — empatia, definição, ideação, prototipação e validação. O maior aprendizado: entender o problema a fundo, sob a ótica do usuário, vem sempre antes de pensar em qualquer solução.</p>
+              <p>Depois de assistir a dois vídeos sobre Design Thinking, respondi oito questões cobrindo as cinco etapas do método.</p>
+              <ul class="node-list">
+                <li><strong>O que é Design Thinking:</strong> uma abordagem de criação de projetos baseada no pensamento dos designers — multidisciplinar, colaborativa e centrada no ser humano.</li>
+                <li><strong>Por que entender o problema antes da solução:</strong> a imersão no problema, pela ótica da empresa e do usuário, é o ponto de partida de qualquer projeto.</li>
+                <li><strong>Foco no usuário:</strong> o método é considerado "totalmente humano", porque busca as necessidades reais das pessoas antes de qualquer coisa.</li>
+                <li><strong>Como conhecer o usuário:</strong> entrevistas, observação de uso, mapeamento da jornada do cliente e coleta de percepções de diferentes perfis.</li>
+                <li><strong>Definição:</strong> analisar o que foi coletado pra delimitar o problema central — criar uma persona ajuda a manter o foco no ser humano.</li>
+                <li><strong>Ideação:</strong> gerar várias ideias a partir de perspectivas diferentes aumenta a chance de chegar numa solução eficiente.</li>
+                <li><strong>Prototipação:</strong> criar uma versão simples da solução pra testar rápido, sem gastar muito recurso.</li>
+                <li><strong>Validação:</strong> testes com usuários reais levam a ajustes — é normal avançar, voltar e revisar decisões ao longo do projeto.</li>
+              </ul>
               <span class="node-badge">Quiz de fixação: 100%</span>
             </div>
           </article>
@@ -732,7 +781,15 @@
             <div class="node-card">
               <p class="node-tag mono">ATIVIDADE 4.1 · DUPLA COM THOMAS VITALINO</p>
               <h3>Design Thinking + IA: do problema à solução</h3>
-              <p>Usamos o Copilot como consultor pra simular o processo completo de Design Thinking: brainstorm de 10 problemas de mobilidade urbana, escolha do congestionamento como foco, criação da persona Mariana Alves e ideação de soluções com Arduino/ESP32. A proposta final foi um "Semáforo Inteligente Sustentável" — um treino de metodologia que ajudou a moldar como conduzimos o problema real do TCC depois.</p>
+              <p>Usamos o Copilot como consultor pra simular, passo a passo, o processo completo de Design Thinking — da escolha do problema até a proposta final, documentando cada prompt e resposta.</p>
+              <ul class="node-list">
+                <li><strong>Passo 1 — brainstorm de problemas:</strong> escolhemos "mobilidade urbana" como área e listamos 10 problemas reais (congestionamento, transporte ineficiente, falta de ciclovias...) — ficamos com o congestionamento nas vias principais.</li>
+                <li><strong>Passo 2 — persona:</strong> criamos a Mariana Alves, 32 anos, que perde até 1h30 no trânsito entre Hortolândia e Campinas todos os dias — frustrações: perda de tempo, estresse, impacto na saúde e imprevisibilidade.</li>
+                <li><strong>Passo 3 — ideação técnica:</strong> pedimos 3 soluções de baixo custo com Arduino/ESP32; entre painel de horários inteligente, carona escolar com RFID e semáforo educativo com sensor de fluxo, escolhemos o semáforo por ser o mais viável de construir.</li>
+                <li><strong>Passo 4 — crítico sincero:</strong> pedimos pra IA atuar como juíza de feira de ciências — ela apontou 3 fragilidades (sensores ultrassônicos imprecisos, lógica de controle simples e apresentação visual pouco atrativa) e sugeriu melhorias pra cada uma.</li>
+                <li><strong>Passo 5 — proposta final:</strong> com tudo isso, fechamos o "Semáforo Inteligente Sustentável" — título, problema, persona e solução revisados por nós.</li>
+                <li>Esse exercício de mobilidade urbana foi um treino de metodologia que ajudou a moldar como conduzimos o problema real do TCC depois.</li>
+              </ul>
             </div>
           </article>
 
@@ -749,7 +806,7 @@
             <div class="node-card">
               <p class="node-tag mono">ATIVIDADE 4.1 · VISITA TÉCNICA</p>
               <h3>Visita técnica — FEBRACE 2026</h3>
-              <p>Visitei a Mostra de Projetos Finalistas da FEBRACE 2026 e conheci de perto seis projetos de áreas diferentes — da automação à saúde. Ver soluções prontas, dos sensores de qualidade da água a um carvão feito de resto de peixe, deu ainda mais ânimo pra seguir com o TCC.</p>
+              <p>Na mostra de projetos finalistas da FEBRACE 2026, escolhi 6 projetos pra visitar — 3 de engenharia e 3 de outras áreas — e entrevistei os autores com as mesmas 4 perguntas: qual é o objetivo do projeto, qual problema foi percebido pra idealizá-lo, quais metodologias foram usadas e quais as principais dificuldades encontradas.</p>
 
               <div class="febrace-table-wrap">
                 <table class="febrace-table">
@@ -766,7 +823,14 @@
                   </tbody>
                 </table>
               </div>
-              <p style="margin-top:16px;">A visita mostrou que automação aparece em contextos bem diferentes — não só na indústria — e que dá pra fazer ciência com criatividade e baixo custo, mesmo com pouco tempo pra conversar com cada equipe.</p>
+
+              <ul class="node-list" style="margin-top:18px;">
+                <li><strong>O que mais chamou atenção:</strong> a estufa inteligente (AGR-9967), pelo uso de Arduino, sensores e painel solar bem organizados — deu ideias direto pro TCC.</li>
+                <li><strong>Maior surpresa:</strong> o carvão de peixe (ENG-10807) — nunca imaginei que dava pra fazer carvão sustentável a partir de resto de pescado.</li>
+                <li><strong>Mais simples e eficaz:</strong> o Flow Clean (SOC-12213) mostrou que nem toda solução boa precisa ser complicada ou cara.</li>
+                <li><strong>Ponto positivo:</strong> ver projetos prontos e funcionando deu muito mais ânimo pra seguir com o nosso TCC.</li>
+                <li><strong>Dificuldade:</strong> faltou tempo pra fazer mais perguntas e conversar com calma com cada equipe — a feira estava bem cheia.</li>
+              </ul>
             </div>
           </article>
 
