@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matheus Alves da Silva — Portfólio · Automação Industrial</title>
+<meta name="description" content="Portfólio pessoal de Matheus Alves da Silva, estudante de Automação Industrial no IFSP Hortolândia — projeto de TCC Gas Eye Sensor e jornada no PJI 2026.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ===================== TOKENS ===================== */
+  :root{
+    --bg:#010e1e;
+    --bg-soft:#0D3057;
+    --panel:#11365F;
+    --panel-strong:#163F6E;
+    --line:rgba(130,200,228,0.16);
+    --copper:#E5484D;
+    --copper-bright:#FF7A6E;
+    --ok:#5FE3A5;
+    --alert:#FF6B6B;
+    --text:#EAF1F8;
+    --text-dim:#9FB4CB;
+    --text-faint:#5E7488;
+    --radius:6px;
+    --maxw:1100px;
+    --display:'Space Grotesk', sans-serif;
+    --body-font:'Inter', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body-font);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  /* faint blueprint grid, fixed across whole page */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:42px 42px;
+    background-position:-1px -1px;
+  }
+
+  main, header, footer{position:relative; z-index:1;}
+
+  a{color:var(--copper); text-decoration:none;}
+  a:hover{color:var(--copper-bright);}
+  h1,h2,h3{font-family:var(--display); margin:0; font-weight:600; letter-spacing:-0.01em;}
+  p{margin:0 0 1em 0; color:var(--text-dim);}
+  .mono{font-family:var(--mono);}
+
+  :focus-visible{
+    outline:2px solid var(--copper-bright);
+    outline-offset:3px;
+  }
+
+  .eyebrow{
+    font-size:0.75rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--copper);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:14px;
+  }
+
+  .section-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .section{padding:96px 0;}
+
+  /* ===================== CORNER REGISTRATION MARKS ===================== */
+  .corner-mark{
+    position:fixed;
+    width:18px; height:18px;
+    z-index:50;
+    pointer-events:none;
+    opacity:0.35;
+  }
+  .corner-mark::before, .corner-mark::after{
+    content:"";
+    position:absolute;
+    background:var(--copper);
+  }
+  .corner-mark::before{ width:100%; height:1px; top:50%; left:0; }
+  .corner-mark::after{ width:1px; height:100%; left:50%; top:0; }
+  .corner-mark.tl{top:14px; left:14px;}
+  .corner-mark.tr{top:14px; right:14px;}
+  .corner-mark.bl{bottom:14px; left:14px;}
+  .corner-mark.br{bottom:14px; right:14px;}
+
+  .corner-tag{
+    position:fixed;
+    bottom:16px; right:38px;
+    font-size:0.65rem;
+    letter-spacing:0.08em;
+    color:var(--text-faint);
+    z-index:50;
+    pointer-events:none;
+  }
+
+  @media (max-width:640px){
+    .corner-mark{display:none;}
+    .corner-tag{display:none;}
+  }
+
+  /* ===================== NAV ===================== */
+  .nav{
+    position:fixed; top:0; left:0; right:0;
+    z-index:40;
+    border-bottom:1px solid transparent;
+    transition:background-color .3s ease, border-color .3s ease;
+  }
+  .nav.scrolled{
+    background-color:rgba(10,27,46,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom-color:var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:18px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:0.95rem;
+    color:var(--text);
+    letter-spacing:0.04em;
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:6px 10px;
+  }
+  .logo:hover{color:var(--text); border-color:var(--copper);}
+  .logo-dot{color:var(--copper);}
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    font-family:var(--mono);
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  .nav-links a{
+    color:var(--text-dim);
+    position:relative;
+    padding-bottom:4px;
+  }
+  .nav-links a:not(.nav-cta)::after{
+    content:"";
+    position:absolute; left:0; bottom:0;
+    width:0%; height:1px;
+    background:var(--copper);
+    transition:width .25s ease;
+  }
+  .nav-links a:not(.nav-cta):hover{color:var(--text);}
+  .nav-links a:not(.nav-cta):hover::after{width:100%;}
+  .nav-cta{
+    color:var(--copper) !important;
+    border:1px solid var(--copper);
+    border-radius:4px;
+    padding:6px 12px;
+  }
+  .nav-cta:hover{background:var(--copper); color:var(--bg) !important;}
+
+  @media (max-width:680px){
+    .nav-links{gap:14px; font-size:0.68rem;}
+    .nav-links span.nav-sep{display:none;}
+  }
+  @media (max-width:520px){
+    .nav-links a:not(.nav-cta){display:none;}
+    .nav-cta{padding:6px 10px; font-size:0.65rem;}
+  }
+
+  /* ===================== HERO ===================== */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:140px 28px 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    width:100%;
+    position:relative;
+    z-index:2;
+  }
+  .hero-bg{
+    position:absolute;
+    top:0; right:0;
+    width:min(640px, 60vw);
+    height:100%;
+    z-index:1;
+    opacity:0.55;
+    pointer-events:none;
+  }
+  .hero-bg svg{width:100%; height:100%;}
+
+  .led{
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--ok);
+    display:inline-block;
+    box-shadow:0 0 8px var(--ok);
+    animation:blink 2.4s ease-in-out infinite;
+  }
+  @keyframes blink{
+    0%,100%{opacity:1;}
+    50%{opacity:0.25;}
+  }
+
+  .hero-title{
+    font-size:clamp(2.6rem, 7vw, 5rem);
+    line-height:1.04;
+    margin:6px 0 22px;
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .hero-sub{
+    max-width:560px;
+    font-size:clamp(1rem, 1.6vw, 1.15rem);
+    color:var(--text-dim);
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .7s ease .1s, transform .7s ease .1s;
+  }
+  .status-bar{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:10px;
+    font-size:0.75rem;
+    letter-spacing:0.04em;
+    color:var(--text-dim);
+    margin:28px 0 36px;
+    padding:12px 16px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:rgba(16,40,66,0.4);
+    width:fit-content;
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .7s ease .2s, transform .7s ease .2s;
+  }
+  .status-bar .dot{
+    width:7px; height:7px; border-radius:50%; display:inline-block; margin-right:6px;
+  }
+  .status-bar .dot.ok{background:var(--ok); box-shadow:0 0 6px var(--ok);}
+  .status-bar .sep{color:var(--text-faint);}
+
+  .hero-actions{
+    display:flex; flex-wrap:wrap; gap:14px;
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .7s ease .3s, transform .7s ease .3s;
+  }
+
+  body.loaded .hero-title,
+  body.loaded .hero-sub,
+  body.loaded .status-bar,
+  body.loaded .hero-actions{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .btn{
+    font-family:var(--mono);
+    font-size:0.82rem;
+    letter-spacing:0.03em;
+    padding:13px 22px;
+    border-radius:4px;
+    display:inline-block;
+    transition:all .2s ease;
+  }
+  .btn-primary{
+    background:var(--copper);
+    color:var(--bg);
+    border:1px solid var(--copper);
+  }
+  .btn-primary:hover{background:var(--copper-bright); border-color:var(--copper-bright); color:var(--bg);}
+  .btn-ghost{
+    color:var(--text);
+    border:1px solid var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--copper); color:var(--copper-bright);}
+
+  /* ===================== REVEAL ON SCROLL ===================== */
+  .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible{opacity:1; transform:translateY(0);}
+
+  /* ===================== SOBRE ===================== */
+  .two-col{
+    display:grid;
+    grid-template-columns:0.8fr 1.2fr;
+    gap:48px;
+  }
+  .col-label h2{font-size:clamp(1.7rem,3vw,2.3rem); position:sticky; top:120px;}
+  .col-content p{color:var(--text-dim); max-width:560px;}
+  .chips{
+    list-style:none;
+    margin:24px 0 0;
+    padding:0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .chips li{
+    font-family:var(--mono);
+    font-size:0.74rem;
+    letter-spacing:0.02em;
+    color:var(--text-dim);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:7px 14px;
+    background:var(--line-soft);
+  }
+
+  @media (max-width:820px){
+    .two-col{grid-template-columns:1fr; gap:24px;}
+    .col-label h2{position:static;}
+  }
+
+  /* ===================== PROJETO (TCC) ===================== */
+  .projeto{
+    background:linear-gradient(180deg, var(--bg-soft), var(--bg));
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .projeto-head{margin-bottom:36px;}
+  .projeto-head h2{font-size:clamp(2rem,4vw,3rem);}
+  .projeto-sub{
+    font-family:var(--mono);
+    color:var(--text-dim);
+    font-size:0.95rem;
+    margin-top:8px;
+  }
+  .projeto-grid{
+    display:grid;
+    grid-template-columns:1.2fr 0.8fr;
+    gap:40px;
+    align-items:start;
+  }
+  .projeto-text p{font-size:1.02rem; max-width:520px;}
+  .datasheet{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--panel);
+    padding:22px 24px;
+  }
+  .datasheet-title{
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    color:var(--copper);
+    margin:0 0 14px;
+  }
+  .datasheet dl{margin:0; display:flex; flex-direction:column; gap:10px;}
+  .datasheet .row{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    border-bottom:1px dashed var(--line);
+    padding-bottom:8px;
+    font-size:0.85rem;
+  }
+  .datasheet .row:last-child{border-bottom:none; padding-bottom:0;}
+  .datasheet dt{color:var(--text-faint); font-family:var(--mono); font-size:0.74rem; letter-spacing:0.03em;}
+  .datasheet dd{margin:0; color:var(--text); text-align:right;}
+
+  @media (max-width:820px){
+    .projeto-grid{grid-template-columns:1fr; gap:24px;}
+  }
+
+  /* ===================== JORNADA / TIMELINE ===================== */
+  .jornada h2{font-size:clamp(2rem,4vw,3rem); margin-bottom:14px;}
+  .jornada-intro{max-width:620px; font-size:1.02rem; margin-bottom:64px;}
+
+  .timeline{
+    position:relative;
+    padding-left:64px;
+  }
+  .timeline-line{
+    position:absolute;
+    left:18px; top:6px; bottom:6px;
+    width:2px;
+    background:var(--line);
+  }
+  .timeline-progress{
+    position:absolute;
+    left:0; top:0;
+    width:100%;
+    height:0%;
+    background:linear-gradient(180deg, var(--copper), var(--copper-bright));
+    box-shadow:0 0 10px rgba(232,163,61,0.5);
+    transition:height .1s linear;
+  }
+  .node{
+    position:relative;
+    margin-bottom:52px;
+  }
+  .node:last-child{margin-bottom:0;}
+  .node-marker{
+    position:absolute;
+    left:-64px;
+    top:0;
+    width:36px; height:36px;
+    border-radius:50%;
+    background:var(--bg-soft);
+    border:2px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.72rem;
+    color:var(--text-faint);
+    transition:border-color .4s ease, color .4s ease, box-shadow .4s ease;
+  }
+  .node.visible .node-marker{
+    border-color:var(--copper);
+    color:var(--copper-bright);
+    box-shadow:0 0 14px rgba(232,163,61,0.35);
+  }
+  .node-card{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--panel);
+    padding:26px 28px;
+  }
+  .node-tag{
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    color:var(--text-faint);
+    margin-bottom:10px;
+  }
+  .node-card h3{font-size:1.25rem; margin-bottom:12px; line-height:1.3;}
+  .node-card p{margin-bottom:0; font-size:0.95rem;}
+  .node-badge{
+    display:inline-block;
+    margin-top:14px;
+    font-family:var(--mono);
+    font-size:0.7rem;
+    letter-spacing:0.04em;
+    color:var(--ok);
+    border:1px solid rgba(95,227,165,0.35);
+    background:rgba(95,227,165,0.08);
+    border-radius:20px;
+    padding:5px 12px;
+  }
+
+  /* ----- topic dividers grouping activities by theme ----- */
+  .topic-block{
+    position:relative;
+    margin:4px 0 28px;
+  }
+  .topic-marker{
+    position:absolute;
+    left:-64px;
+    top:0;
+    width:36px; height:36px;
+    border-radius:8px;
+    background:var(--copper);
+    color:var(--bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.68rem;
+    font-weight:600;
+    box-shadow:0 0 14px rgba(232,163,61,0.45);
+  }
+  .topic-heading{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding-bottom:16px;
+    border-bottom:1px dashed var(--line);
+  }
+  .topic-eyebrow{
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+  }
+  .topic-heading h3{
+    font-size:1.35rem;
+    color:var(--copper-bright);
+  }
+
+  @media (max-width:640px){
+    .timeline{padding-left:46px;}
+    .timeline-line{left:13px;}
+    .node-marker{left:-46px; width:28px; height:28px; font-size:0.62rem;}
+    .node-card{padding:20px;}
+    .topic-marker{left:-46px; width:28px; height:28px; font-size:0.6rem;}
+  }
+
+  /* ----- FEBRACE table ----- */
+  .febrace-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:16px;
+    font-size:0.85rem;
+  }
+  .febrace-table th, .febrace-table td{
+    text-align:left;
+    padding:10px 12px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  .febrace-table th{
+    font-family:var(--mono);
+    font-size:0.66rem;
+    letter-spacing:0.06em;
+    color:var(--text-faint);
+    text-transform:uppercase;
+  }
+  .febrace-table td:first-child{color:var(--copper-bright); white-space:nowrap; font-family:var(--mono); font-size:0.74rem;}
+  .febrace-table-wrap{overflow-x:auto;}
+
+  /* ===================== FOOTER ===================== */
+  .footer{
+    border-top:1px solid var(--line);
+    padding:48px 28px 90px;
+    text-align:center;
+  }
+  .footer-inner{max-width:var(--maxw); margin:0 auto;}
+  .footer p{margin-bottom:6px;}
+  .footer .mono{color:var(--text-faint); font-size:0.72rem; letter-spacing:0.08em; margin-bottom:14px;}
+  .footer a{font-family:var(--mono); font-size:0.85rem;}
+  .copyright{margin-top:18px; color:var(--text-faint); font-size:0.78rem;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="corner-mark tl"></div>
+  <div class="corner-mark tr"></div>
+  <div class="corner-mark bl"></div>
+  <div class="corner-mark br"></div>
+  <div class="corner-tag mono">REV. A · PJI 2026</div>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#inicio" class="logo">MA<span class="logo-dot">•</span>S</a>
+      <nav class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#projeto">Projeto</a>
+        <a href="#jornada">Jornada</a>
+        <a href="https://gas-eye-sensor.vercel.app/" target="_blank" rel="noopener" class="nav-cta">Gas Eye Sensor ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="inicio" class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <svg viewBox="0 0 600 600" fill="none">
+          <circle cx="430" cy="220" r="60" stroke="#E5484D" stroke-opacity="0.5" stroke-width="1.5"/>
+          <circle cx="430" cy="220" r="120" stroke="rgba(130,200,228,0.16)" stroke-width="1.5" stroke-dasharray="4 6"/>
+          <circle cx="430" cy="220" r="190" stroke="rgba(130,200,228,0.16)" stroke-width="1.5" stroke-dasharray="2 8"/>
+          <circle cx="430" cy="220" r="260" stroke="rgba(130,200,228,0.07)" stroke-width="1.5" stroke-dasharray="2 10"/>
+          <circle cx="430" cy="220" r="5" fill="#E5484D"/>
+          <line x1="430" y1="0" x2="430" y2="160" stroke="rgba(130,200,228,0.16)" stroke-width="1"/>
+          <line x1="600" y1="220" x2="490" y2="220" stroke="rgba(130,200,228,0.16)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="hero-inner">
+        <p class="eyebrow mono"><span class="led"></span> IFSP HORTOLÂNDIA // AUTOMAÇÃO INDUSTRIAL</p>
+        <h1 class="hero-title">Matheus Alves<br>da Silva</h1>
+        <p class="hero-sub">Estudante técnico que conecta sensores, código e Design Thinking pra transformar problemas do dia a dia em protótipos que funcionam de verdade.</p>
+        <div class="status-bar mono">
+          <span><i class="dot ok"></i>STATUS: ONLINE</span>
+          <span class="sep">/</span>
+          <span>PROJETO ATIVO: Gas Eye Sensor</span>
+          <span class="sep">/</span>
+          <span>PJI 2026</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#projeto" class="btn btn-primary">Ver projeto de TCC</a>
+          <a href="#jornada" class="btn btn-ghost">Conhecer a jornada ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SOBRE ===================== -->
+    <section id="sobre" class="section sobre">
+      <div class="section-inner two-col">
+        <div class="col-label reveal">
+          <p class="eyebrow mono">00 // SOBRE</p>
+          <h2>Por trás do circuito</h2>
+        </div>
+        <div class="col-content reveal">
+          <p>Sou estudante do Curso Técnico em Automação Industrial no IFSP, Campus Hortolândia. Ao longo do Projeto Integrador (PJI) venho unindo eletrônica, programação e Design Thinking pra transformar problemas reais em protótipos que realmente funcionam — do levantamento do problema até o circuito fechado.</p>
+          <p>Tenho interesse especial em microcontroladores (ESP32 e Arduino), sensores e em usar IA generativa como apoio pro raciocínio — nunca como substituta dele. Também estou de olho no ENEM, com Engenharia de Controle e Automação no radar.</p>
+          <ul class="chips">
+            <li>ESP32 &amp; Arduino</li>
+            <li>Sensor MQ-5</li>
+            <li>Esquemáticos &amp; eletrônica</li>
+            <li>Next.js · TypeScript · Tailwind</li>
+            <li>Modelagem &amp; impressão 3D</li>
+            <li>Design Thinking</li>
+            <li>IA aplicada a projetos</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJETO TCC ===================== -->
+    <section id="projeto" class="section projeto">
+      <div class="section-inner">
+        <p class="eyebrow mono reveal">01 // PROJETO EM DESTAQUE</p>
+        <div class="projeto-head reveal">
+          <h2>Gas Eye Sensor</h2>
+          <p class="projeto-sub">Sistema de detecção de vazamento de gás com ESP32</p>
+        </div>
+
+        <div class="projeto-grid">
+          <div class="projeto-text reveal">
+            <p>É o projeto de TCC do PJI 2026, desenvolvido pela equipe GasEye Sensor: um sistema que monitora o ambiente em tempo real com um sensor MQ-5 e dispara alertas visuais, sonoros e por notificação assim que a concentração de gás passa do limite seguro. Do circuito ao site que apresenta o projeto, a ideia é mostrar como automação simples pode literalmente salvar vidas dentro de casa.</p>
+            <a href="https://gas-eye-sensor.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary">Acessar o site do projeto ↗</a>
+          </div>
+          <div class="datasheet reveal">
+            <p class="datasheet-title mono">DATASHEET</p>
+            <dl>
+              <div class="row"><dt>MCU</dt><dd>ESP32</dd></div>
+              <div class="row"><dt>SENSOR</dt><dd>MQ-5</dd></div>
+              <div class="row"><dt>ENTRADA ANALÓGICA</dt><dd>GPIO34 (ADC)</dd></div>
+              <div class="row"><dt>ALERTA VISUAL</dt><dd>LED — GPIO5</dd></div>
+              <div class="row"><dt>ALERTA SONORO</dt><dd>Buzzer — GPIO18</dd></div>
+              <div class="row"><dt>INTERFACE</dt><dd>Site + notificação no app</dd></div>
+              <div class="row"><dt>EQUIPE</dt><dd>GasEye Sensor</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== JORNADA / TIMELINE ===================== -->
+    <section id="jornada" class="section jornada">
+      <div class="section-inner">
+        <p class="eyebrow mono reveal">02 // JORNADA NO PJI</p>
+        <h2 class="reveal">Do brainstorming ao protótipo</h2>
+        <p class="jornada-intro reveal">Pra facilitar a leitura, separei as atividades individuais do Projeto Integrador 2026 em três blocos temáticos: Imersão em IA, Design Thinking e Visita Técnica.</p>
+
+        <div class="timeline" id="timeline">
+          <div class="timeline-line">
+            <div class="timeline-progress" id="timelineProgress"></div>
+          </div>
+
+          <div class="topic-block reveal">
+            <div class="topic-marker mono">§1</div>
+            <div class="topic-heading">
+              <span class="topic-eyebrow mono">TÓPICO 01 · AULA 02</span>
+              <h3>Imersão em IA</h3>
+            </div>
+          </div>
+
+          <article class="node reveal">
+            <div class="node-marker mono">U1</div>
+            <div class="node-card">
+              <p class="node-tag mono">ATIVIDADE 2.1 · INDIVIDUAL</p>
+              <h3>Pensamento crítico em primeiro lugar</h3>
+              <p>Depois de assistir a palestras sobre inteligência artificial, refleti sobre como a IA pode ampliar nossas capacidades — ou nos deixar dependentes demais dela. A conclusão: pensamento crítico e estratégia continuam sendo diferenciais bem humanos, e o futuro profissional passa por saber usar a IA pra aprender, não pra terceirizar o raciocínio.</p>
+            </div>
+          </article>
+
+          <article class="node reveal">
+            <div class="node-marker mono">U2</div>
+            <div class="node-card">
+              <p class="node-tag mono">ATIVIDADE 2.2 · DUPLA COM THOMAS VITALINO</p>
+              <h3>Explorando a IA Generativa: ChatGPT x Copilot</h3>
+              <p>Em dupla, testei o ChatGPT enquanto o Thomas testava o Copilot, comparando as respostas pros mesmos quatro prompts — de uma explicação simples até um poema sobre a Revolução Francesa. Conclusão da dupla: quanto mais detalhado o prompt, melhor — e mais interessante — fica a resposta das duas ferramentas.</p>
+            </div>
+          </article>
+
+          <div class="topic-block reveal">
+            <div class="topic-marker mono">§2</div>
+            <div class="topic-heading">
+              <span class="topic-eyebrow mono">TÓPICO 02 · AULA 04</span>
+              <h3>Design Thinking</h3>
+            </div>
+          </div>
+
+          <article class="node reveal">
+            <div class="node-marker mono">U3</div>
+            <div class="node-card">
+              <p class="node-tag mono">DESIGN THINKING · ESCUTA ATIVA · INDIVIDUAL</p>
+              <h3>Design Thinking — escuta ativa</h3>
+              <p>Respondi 8 questões sobre as cinco etapas do Design Thinking — empatia, definição, ideação, prototipação e validação. O maior aprendizado: entender o problema a fundo, sob a ótica do usuário, vem sempre antes de pensar em qualquer solução.</p>
+              <span class="node-badge">Quiz de fixação: 100%</span>
+            </div>
+          </article>
+
+          <article class="node reveal">
+            <div class="node-marker mono">U4</div>
+            <div class="node-card">
+              <p class="node-tag mono">ATIVIDADE 4.1 · DUPLA COM THOMAS VITALINO</p>
+              <h3>Design Thinking + IA: do problema à solução</h3>
+              <p>Usamos o Copilot como consultor pra simular o processo completo de Design Thinking: brainstorm de 10 problemas de mobilidade urbana, escolha do congestionamento como foco, criação da persona Mariana Alves e ideação de soluções com Arduino/ESP32. A proposta final foi um "Semáforo Inteligente Sustentável" — um treino de metodologia que ajudou a moldar como conduzimos o problema real do TCC depois.</p>
+            </div>
+          </article>
+
+          <div class="topic-block reveal">
+            <div class="topic-marker mono">§3</div>
+            <div class="topic-heading">
+              <span class="topic-eyebrow mono">TÓPICO 03 · AULA 04</span>
+              <h3>Visita Técnica</h3>
+            </div>
+          </div>
+
+          <article class="node reveal">
+            <div class="node-marker mono">U5</div>
+            <div class="node-card">
+              <p class="node-tag mono">ATIVIDADE 4.1 · VISITA TÉCNICA</p>
+              <h3>Visita técnica — FEBRACE 2026</h3>
+              <p>Visitei a Mostra de Projetos Finalistas da FEBRACE 2026 e conheci de perto seis projetos de áreas diferentes — da automação à saúde. Ver soluções prontas, dos sensores de qualidade da água a um carvão feito de resto de peixe, deu ainda mais ânimo pra seguir com o TCC.</p>
+
+              <div class="febrace-table-wrap">
+                <table class="febrace-table">
+                  <thead>
+                    <tr><th>Área</th><th>Projeto</th><th>Destaque</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>SOC-12213</td><td>Flow Clean — Fluxo Limpo</td><td>Solução de plástico simples e barata pra reduzir poluição em bueiros</td></tr>
+                    <tr><td>BIO-10945</td><td>Perfil de proteínas em canais iônicos</td><td>Análise ligada ao câncer de ovário, com maquete explicativa na bancada</td></tr>
+                    <tr><td>AGR-9967</td><td>Simbiose sustentável em ambiente controlado</td><td>Mini estufa inteligente com Arduino, sensores e painel solar</td></tr>
+                    <tr><td>ENG-11415</td><td>ReciclAr — Fase II</td><td>Reciclagem de fibra de vidro de turbinas eólicas no fim da vida útil</td></tr>
+                    <tr><td>ENG-10807</td><td>Carvão de peixe</td><td>Carvão sustentável feito a partir de resíduo da indústria do pescado</td></tr>
+                    <tr><td>ENG-9946</td><td>Qualidade da água com Arduino</td><td>Protótipo acessível pra medir pH, turbidez e temperatura da água</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style="margin-top:16px;">A visita mostrou que automação aparece em contextos bem diferentes — não só na indústria — e que dá pra fazer ciência com criatividade e baixo custo, mesmo com pouco tempo pra conversar com cada equipe.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="mono">PORTFÓLIO PESSOAL · PJI 2026</p>
+      <p>Curso Técnico em Automação Industrial — IFSP, Campus Hortolândia</p>
+      <a href="https://gas-eye-sensor.vercel.app/" target="_blank" rel="noopener">Gas Eye Sensor ↗</a>
+      <p class="copyright">© 2026 Matheus Alves da Silva</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hero load-in animation
+    window.addEventListener('DOMContentLoaded', () => {
+      requestAnimationFrame(() => {
+        setTimeout(() => document.body.classList.add('loaded'), 60);
+      });
+    });
+
+    // Nav background on scroll
+    const nav = document.getElementById('nav');
+    const onScrollNav = () => {
+      if (window.scrollY > 30) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScrollNav, { passive: true });
+    onScrollNav();
+
+    // Reveal-on-scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // Timeline node activation
+    const nodes = document.querySelectorAll('.node');
+    const nodeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.4 });
+    nodes.forEach(n => nodeObserver.observe(n));
+
+    // PCB trace progress line, tied to scroll position within the timeline
+    const timeline = document.getElementById('timeline');
+    const progress = document.getElementById('timelineProgress');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function updateProgress() {
+      const rect = timeline.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = rect.height;
+      let visible = vh * 0.6 - rect.top;
+      let fraction = visible / total;
+      fraction = Math.max(0, Math.min(1, fraction));
+      progress.style.height = (fraction * 100) + '%';
+    }
+
+    if (reduceMotion) {
+      progress.style.height = '100%';
+    } else {
+      window.addEventListener('scroll', () => requestAnimationFrame(updateProgress), { passive: true });
+      window.addEventListener('resize', () => requestAnimationFrame(updateProgress));
+      updateProgress();
+    }
+  </script>
+
+</body>
+</html>
