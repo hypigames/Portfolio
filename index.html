@@ -603,6 +603,7 @@
       <nav class="nav-links">
         <a href="#sobre">Sobre</a>
         <a href="#projeto">Projeto</a>
+        <a href="#mudanca-rota">Mudança de rota</a>
         <a href="#jornada">Jornada</a>
         <a href="https://gas-eye.vercel.app/" target="_blank" rel="noopener" class="nav-cta">Gas Eye Sensor ↗</a>
       </nav>
@@ -671,26 +672,71 @@
         <p class="eyebrow mono reveal">01 // PROJETO EM DESTAQUE</p>
         <div class="projeto-head reveal">
           <h2>Gas Eye Sensor</h2>
-          <p class="projeto-sub">Sistema de detecção de vazamento de gás com ESP32</p>
+          <p class="projeto-sub">Sistema de monitoramento de gás com ESP32, aplicativo e nuvem</p>
         </div>
 
         <div class="projeto-grid">
           <div class="projeto-text reveal">
-            <p>É o projeto de TCC do PJI 2026, desenvolvido pela equipe GasEye Sensor: um sistema que monitora o ambiente em tempo real com um sensor MQ-5 e dispara alertas visuais, sonoros e por notificação assim que a concentração de gás passa do limite seguro. Do circuito ao site que apresenta o projeto, a ideia é mostrar como automação simples pode literalmente salvar vidas dentro de casa.</p>
-            <a href="https://gas-eye.app/" target="_blank" rel="noopener" class="btn btn-primary">Acessar o site do projeto ↗</a>
+            <p>O GasEye Sensor é o projeto de TCC desenvolvido no PJI 2026. Utiliza um sensor MQ-5 conectado a um ESP32 para acompanhar as leituras do ambiente e sinalizar valores acima do limite configurado. O sistema reúne alertas visuais e sonoros, envio de dados para a nuvem e notificações ao celular por meio de um aplicativo próprio. O projeto está em fase de prototipagem e validação: não é um detector certificado nem substitui equipamentos comerciais de segurança.</p>
+            <a href="https://gas-eye.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary">Acessar o site do projeto ↗</a>
           </div>
           <div class="datasheet reveal">
             <p class="datasheet-title mono">DATASHEET</p>
             <dl>
               <div class="row"><dt>MCU</dt><dd>ESP32</dd></div>
               <div class="row"><dt>SENSOR</dt><dd>MQ-5</dd></div>
-              <div class="row"><dt>ENTRADA ANALÓGICA</dt><dd>GPIO34 (ADC)</dd></div>
-              <div class="row"><dt>ALERTA VISUAL</dt><dd>LED — GPIO5</dd></div>
+              <div class="row"><dt>LEITURA ANALÓGICA</dt><dd>GPIO34 (ADC)</dd></div>
+              <div class="row"><dt>SINAL DIGITAL</dt><dd>GPIO19</dd></div>
+              <div class="row"><dt>ALERTA VISUAL</dt><dd>LED — GPIO23</dd></div>
               <div class="row"><dt>ALERTA SONORO</dt><dd>Buzzer — GPIO18</dd></div>
-              <div class="row"><dt>INTERFACE</dt><dd>Site + notificação no app</dd></div>
+              <div class="row"><dt>INTEGRAÇÃO</dt><dd>Aplicativo + Supabase</dd></div>
+              <div class="row"><dt>STATUS</dt><dd>Protótipo em desenvolvimento</dd></div>
               <div class="row"><dt>EQUIPE</dt><dd>GasEye Sensor</dd></div>
             </dl>
           </div>
+        </div>
+
+        <div class="section-inner" style="padding:36px 0 0;">
+          <div class="two-col">
+            <div class="col-label reveal">
+              <p class="eyebrow mono">DESENVOLVIMENTO // INTEGRAÇÃO</p>
+              <h2>Do circuito à experiência no celular</h2>
+            </div>
+            <div class="col-content reveal">
+              <p>O desenvolvimento envolve a integração do sensor MQ-5, do ESP32, dos alertas locais e dos serviços de nuvem. O microcontrolador envia as leituras e o estado do sistema ao Supabase, que permite acompanhar os dados e integrar o fluxo de notificações ao aplicativo.</p>
+              <ul class="node-list">
+                <li><strong>Eletrônica:</strong> ESP32, sensor MQ-5, LED e buzzer integrados ao circuito.</li>
+                <li><strong>Comunicação:</strong> conexão Wi-Fi e sincronização de dados com o Supabase.</li>
+                <li><strong>Aplicativo:</strong> interface própria para acompanhar o sistema e receber notificações.</li>
+                <li><strong>Testes de integração:</strong> envio de leituras, estado de alerta e recebimento de notificações no celular foram verificados.</li>
+                <li><strong>Próximas etapas:</strong> continuar os testes controlados, aprimorar o protótipo físico e desenvolver a caixa com modelagem e impressão 3D.</li>
+              </ul>
+              <p style="margin-top:16px;font-size:0.85rem;">O GasEye é um protótipo acadêmico em desenvolvimento, não um equipamento certificado para prevenção ou detecção de vazamentos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MUDANÇA DE ROTA ===================== -->
+    <section id="mudanca-rota" class="section">
+      <div class="section-inner two-col">
+        <div class="col-label reveal">
+          <p class="eyebrow mono">02 // EVOLUÇÃO DO PROJETO</p>
+          <h2>Mudança de rota</h2>
+        </div>
+        <div class="col-content reveal">
+          <p>Durante o desenvolvimento do Projeto Integrador, percebemos que uma ideia pode mudar conforme o grupo pesquisa, discute problemas e entende melhor as necessidades das pessoas. As atividades de brainstorming e Design Thinking ajudaram a organizar esse processo: primeiro, observar o problema; depois, avaliar possibilidades e pensar em uma solução que pudesse ser construída e testada.</p>
+          <p>Foi nesse caminho que o foco do nosso trabalho se direcionou para o <strong>GasEye Sensor</strong>: um protótipo de monitoramento de gás que utiliza o sensor MQ-5 e um ESP32. A proposta é acompanhar as leituras do sensor e, quando o valor ultrapassa o limite configurado no projeto, sinalizar a condição por meio de alertas locais e de uma notificação enviada ao celular.</p>
+          <p>A mudança de direção também ampliou o desafio técnico. Além de montar o circuito, foi necessário desenvolver a comunicação Wi-Fi, integrar o envio de dados ao Supabase e criar um aplicativo próprio para acompanhar o sistema e receber notificações. Assim, o TCC passou a reunir eletrônica, programação, desenvolvimento de software e prototipagem física em uma única solução.</p>
+          <ul class="node-list">
+            <li><strong>Nova direção:</strong> desenvolver um sistema de monitoramento de gás com ESP32 e MQ-5.</li>
+            <li><strong>Integração:</strong> conectar hardware, aplicativo e serviços em nuvem.</li>
+            <li><strong>Validação:</strong> verificar a comunicação, o envio de leituras e o recebimento de notificações por testes controlados.</li>
+            <li><strong>Continuidade:</strong> aprimorar o protótipo físico e preparar uma caixa própria, com modelagem e impressão 3D.</li>
+          </ul>
+          <p style="margin-top:18px;">Essa mudança representa a evolução do trabalho: saímos da exploração de possibilidades e passamos a desenvolver uma solução concreta, que ainda está em fase de prototipagem e validação.</p>
+          <p style="font-size:0.85rem;">O GasEye é um projeto acadêmico em desenvolvimento e não substitui detectores certificados nem equipamentos de segurança.</p>
         </div>
       </div>
     </section>
@@ -698,7 +744,7 @@
     <!-- ===================== JORNADA / TIMELINE ===================== -->
     <section id="jornada" class="section jornada">
       <div class="section-inner">
-        <p class="eyebrow mono reveal">02 // JORNADA NO PJI</p>
+        <p class="eyebrow mono reveal">03 // JORNADA NO PJI</p>
         <h2 class="reveal">Do brainstorming ao protótipo</h2>
         <p class="jornada-intro reveal">Pra facilitar a leitura, separei as atividades individuais do Projeto Integrador 2026 em três blocos temáticos: Imersão em IA, Design Thinking e Visita Técnica.</p>
 
@@ -844,7 +890,7 @@
     <div class="footer-inner">
       <p class="mono">PORTFÓLIO PESSOAL · PJI 2026</p>
       <p>Curso Técnico em Automação Industrial — IFSP, Campus Hortolândia</p>
-      <a href="https://gas-eye.app//" target="_blank" rel="noopener">Gas Eye Sensor ↗</a>
+      <a href="https://gas-eye.vercel.app/" target="_blank" rel="noopener">Gas Eye Sensor ↗</a>
       <p class="copyright">© 2026 Matheus Alves da Silva</p>
     </div>
   </footer>
