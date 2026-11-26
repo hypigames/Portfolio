@@ -403,6 +403,73 @@
     .projeto-grid{grid-template-columns:1fr; gap:24px;}
   }
 
+  /* ===================== GALERIA DO PROJETO ===================== */
+  .galeria{margin-top:56px;}
+  .galeria-head{margin-bottom:22px;}
+  .galeria-head h3{font-size:1.35rem; margin:6px 0 6px;}
+  .galeria-head p{margin:0; font-size:0.95rem; color:var(--text-dim); max-width:620px;}
+  .galeria-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:18px;
+  }
+  .foto{
+    margin:0;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--panel);
+    overflow:hidden;
+  }
+  .foto button{
+    display:block; width:100%; padding:0; border:0; background:none; cursor:zoom-in;
+    position:relative;
+  }
+  .foto img{
+    display:block; width:100%; height:100%;
+    object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .foto button:hover img{transform:scale(1.03);}
+  .foto button:focus-visible{outline:2px solid var(--copper-bright); outline-offset:-2px;}
+  .foto .ratio-portrait{aspect-ratio:4/5; overflow:hidden;}
+  .foto .ratio-wide{aspect-ratio:16/9; overflow:hidden;}
+  .foto.wide{grid-column:1 / -1;}
+  .foto.wide img{object-position:center 30%;}
+  .foto figcaption{
+    padding:14px 18px 16px;
+    font-size:0.85rem;
+    color:var(--text-dim);
+    border-top:1px solid var(--line);
+  }
+  .foto figcaption .mono{
+    display:block;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    color:var(--copper-bright);
+    margin-bottom:4px;
+  }
+  .lightbox{
+    position:fixed; inset:0; z-index:1000;
+    background:rgba(5,16,32,0.92);
+    display:none;
+    align-items:center; justify-content:center;
+    flex-direction:column; gap:14px;
+    padding:24px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:100%; max-height:80vh; border-radius:var(--radius); box-shadow:0 10px 40px rgba(0,0,0,0.5);}
+  .lightbox p{margin:0; color:var(--text-dim); font-size:0.9rem; text-align:center; max-width:640px;}
+  .lightbox-close{
+    position:absolute; top:16px; right:18px;
+    width:40px; height:40px; border-radius:50%;
+    border:1px solid var(--line); background:var(--panel); color:var(--text);
+    font-size:1.2rem; cursor:pointer;
+  }
+  @media (max-width:640px){
+    .galeria-grid{grid-template-columns:1fr;}
+    .foto.wide{grid-column:auto;}
+  }
+
   /* ===================== JORNADA / TIMELINE ===================== */
   .jornada h2{font-size:clamp(2rem,4vw,3rem); margin-bottom:14px;}
   .jornada-intro{max-width:620px; font-size:1.02rem; margin-bottom:64px;}
@@ -696,6 +763,34 @@
           </div>
         </div>
 
+        <div class="galeria reveal">
+          <div class="galeria-head">
+            <p class="eyebrow mono">REGISTROS // PROTÓTIPO E EQUIPE</p>
+            <h3>O GasEye Sensor em fotos</h3>
+            <p>Registros do protótipo montado, do site do projeto em funcionamento e da equipe durante a apresentação.</p>
+          </div>
+          <div class="galeria-grid">
+            <figure class="foto">
+              <button type="button" data-full="img/gaseye-prototipo.jpg" data-alt="Protótipo do GasEye Sensor montado em caixa impressa em 3D, com ESP32, sensor MQ-5, buzzer e LED" aria-label="Ampliar foto do protótipo">
+                <div class="ratio-portrait"><img src="img/gaseye-prototipo.jpg" alt="Protótipo do GasEye Sensor montado em caixa impressa em 3D, com ESP32, sensor MQ-5, buzzer e LED" loading="lazy"></div>
+              </button>
+              <figcaption><span class="mono">PROTÓTIPO FÍSICO</span>ESP32, sensor MQ-5, buzzer e LED montados na caixa impressa em 3D.</figcaption>
+            </figure>
+            <figure class="foto">
+              <button type="button" data-full="img/gaseye-site.jpg" data-alt="Site do projeto GasEye Sensor aberto em um notebook" aria-label="Ampliar foto do site do projeto">
+                <div class="ratio-portrait"><img src="img/gaseye-site.jpg" alt="Site do projeto GasEye Sensor aberto em um notebook" loading="lazy"></div>
+              </button>
+              <figcaption><span class="mono">SITE DO PROJETO</span>Página de apresentação do GasEye Sensor, com status e leitura do ambiente.</figcaption>
+            </figure>
+            <figure class="foto wide">
+              <button type="button" data-full="img/gaseye-equipe.jpg" data-alt="Equipe do projeto GasEye Sensor reunida durante a apresentação" aria-label="Ampliar foto da equipe">
+                <div class="ratio-wide"><img src="img/gaseye-equipe.jpg" alt="Equipe do projeto GasEye Sensor reunida durante a apresentação" loading="lazy"></div>
+              </button>
+              <figcaption><span class="mono">EQUIPE</span>Equipe do projeto reunida durante a apresentação do protótipo.</figcaption>
+            </figure>
+          </div>
+        </div>
+
         <div class="section-inner" style="padding:36px 0 0;">
           <div class="two-col">
             <div class="col-label reveal">
@@ -709,7 +804,7 @@
                 <li><strong>Comunicação:</strong> conexão Wi-Fi e sincronização de dados com o Supabase.</li>
                 <li><strong>Aplicativo:</strong> interface própria para acompanhar o sistema e receber notificações.</li>
                 <li><strong>Testes de integração:</strong> envio de leituras, estado de alerta e recebimento de notificações no celular foram verificados.</li>
-                <li><strong>Próximas etapas:</strong> continuar os testes controlados, aprimorar o protótipo físico e desenvolver a caixa com modelagem e impressão 3D.</li>
+                <li><strong>Próximas etapas:</strong> continuar os testes controlados e aprimorar o acabamento do protótipo físico, já montado em caixa impressa em 3D.</li>
               </ul>
               <p style="margin-top:16px;font-size:0.85rem;">O GasEye é um protótipo acadêmico em desenvolvimento, não um equipamento certificado para prevenção ou detecção de vazamentos.</p>
             </div>
@@ -895,6 +990,12 @@
     </div>
   </footer>
 
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Fechar">✕</button>
+    <img src="" alt="" id="lightboxImg">
+    <p id="lightboxCap"></p>
+  </div>
+
   <script>
     // Hero load-in animation
     window.addEventListener('DOMContentLoaded', () => {
@@ -955,6 +1056,22 @@
       window.addEventListener('resize', () => requestAnimationFrame(updateProgress));
       updateProgress();
     }
+
+    // ===== Lightbox da galeria =====
+    (function(){
+      const box=document.getElementById('lightbox');
+      const img=document.getElementById('lightboxImg');
+      const cap=document.getElementById('lightboxCap');
+      const close=()=>{box.classList.remove('open'); img.src='';};
+      document.querySelectorAll('.foto button').forEach(b=>{
+        b.addEventListener('click',()=>{
+          img.src=b.dataset.full; img.alt=b.dataset.alt; cap.textContent=b.dataset.alt;
+          box.classList.add('open');
+        });
+      });
+      box.addEventListener('click',e=>{ if(e.target!==img) close(); });
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+    })();
   </script>
 
 </body>
